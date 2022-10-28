@@ -21,15 +21,15 @@ abstract class Smartphone implements iSmartphone {
     );
   }
   Call(minutesCall: number): void {
-    if (this.credit >= this.plan) {
-      let callPrice = Math.round(minutesCall * this.plan);
-      let newCredit = (this.credit -= callPrice);
+    let callPrice = Math.round(minutesCall * this.plan);
+    let newCredit = (this.credit -= callPrice);
+    if (this.credit > this.plan) {
       this.phoneCalls++;
       console.log(
         `Durata Chiamata: ${minutesCall} minuti, Costo: ${callPrice} Euro, Credito residuo: ${newCredit} Euro`
       );
     } else {
-      console.log(`Il credito residuo è insufficiente`);
+      console.log(`Il credito residuo è insufficiente per chiamare`);
     }
   }
   Credit(): void {
@@ -45,11 +45,13 @@ abstract class Smartphone implements iSmartphone {
 }
 
 class Iphone extends Smartphone {}
+class Samsung extends Smartphone {}
+class Xiaomi extends Smartphone {}
 
 class User {
   name: string;
   surname: string;
-  smartphone: Iphone;
+  smartphone: Iphone | Samsung | Xiaomi;
   constructor(name: string, surname: string, smartphone: Iphone) {
     this.name = name;
     this.surname = surname;
@@ -58,14 +60,40 @@ class User {
 }
 
 let iphoneX = new Iphone();
-let userOne = new User("Armando", "DuVal", iphoneX);
+let userOne = new User("Armando", "Duval", iphoneX);
 console.log(userOne);
-userOne.smartphone.TopUp(5);
-userOne.smartphone.TopUp(15);
 
-userOne.smartphone?.Call(5);
-userOne.smartphone?.Call(3.5);
-userOne.smartphone?.Call(15);
-userOne.smartphone.NumberCalls();
-userOne.smartphone.CallsReset();
-userOne.smartphone.NumberCalls();
+let samsungS20 = new Samsung();
+let userTwo = new User("Gigi", "Progetti", samsungS20);
+console.log(userTwo);
+userTwo.smartphone.TopUp(2);
+userTwo.smartphone.TopUp(5);
+
+userTwo.smartphone?.Call(9);
+userTwo.smartphone?.Call(12);
+userTwo.smartphone?.Call(25);
+userTwo.smartphone.NumberCalls();
+userTwo.smartphone.CallsReset();
+userTwo.smartphone.NumberCalls();
+
+let btn5 = document.querySelector("#ric5") as HTMLButtonElement;
+
+btn5?.addEventListener("click", () => {
+  let displayCredit = document.querySelector("p") as HTMLParagraphElement;
+  userOne.smartphone.TopUp(5);
+  displayCredit.innerText = `Credito Residuo:${userOne.smartphone.credit} Euro`;
+});
+
+let btn10 = document.querySelector("#ric10") as HTMLButtonElement;
+btn10?.addEventListener("click", () => {
+  let displayCredit = document.querySelector("p") as HTMLParagraphElement;
+  userOne.smartphone.TopUp(10);
+  displayCredit.innerText = `Credito Residuo:${userOne.smartphone.credit} Euro`;
+});
+
+let btn15 = document.querySelector("#ric15") as HTMLButtonElement;
+btn15?.addEventListener("click", () => {
+  let displayCredit = document.querySelector("p") as HTMLParagraphElement;
+  userOne.smartphone.TopUp(15);
+  displayCredit.innerText = `Credito Residuo:${userOne.smartphone.credit} Euro `;
+});
