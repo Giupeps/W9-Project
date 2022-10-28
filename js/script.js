@@ -45,9 +45,6 @@ class User {
         this.smartphone = smartphone;
     }
 }
-let iphoneX = new Iphone();
-let userOne = new User("Armando", "Duval", iphoneX);
-console.log(userOne);
 let samsungS20 = new Samsung();
 let userTwo = new User("Gigi", "Progetti", samsungS20);
 console.log(userTwo);
@@ -63,6 +60,10 @@ userTwo.smartphone.Credit();
 userTwo.smartphone.NumberCalls();
 userTwo.smartphone.CallsReset();
 userTwo.smartphone.NumberCalls();
+//---------------------------------------------------------
+let iphoneX = new Iphone();
+let userOne = new User("Armando", "Duval", iphoneX);
+console.log(userOne);
 let btn5 = document.querySelector("#ric5");
 btn5 === null || btn5 === void 0 ? void 0 : btn5.addEventListener("click", () => {
     let displayCredit = document.querySelector("p");
