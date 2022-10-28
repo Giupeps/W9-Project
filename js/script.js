@@ -1,5 +1,5 @@
 "use strict";
-var _a, _b, _c;
+var _a, _b, _c, _d, _e;
 class Smartphone {
     constructor() {
         this.credit = 0;
@@ -8,7 +8,7 @@ class Smartphone {
     }
     TopUp(param) {
         this.credit = this.credit + param;
-        console.log(`hai ricaricato ${param} Euro il tuo credito aggiornato è di ${this.credit} Euro`);
+        console.log(`hai ricaricato ${param} Euro`);
     }
     Call(minutesCall) {
         let callPrice = Math.round(minutesCall * this.plan);
@@ -29,7 +29,7 @@ class Smartphone {
     }
     CallsReset() {
         this.phoneCalls = 0;
-        console.log(`Il numero delle chiamate è ora 0`);
+        console.log(`Hai resettato il contatore delle chiamate`);
     }
 }
 class Iphone extends Smartphone {
@@ -51,11 +51,15 @@ console.log(userOne);
 let samsungS20 = new Samsung();
 let userTwo = new User("Gigi", "Progetti", samsungS20);
 console.log(userTwo);
-userTwo.smartphone.TopUp(2);
+userTwo.smartphone.TopUp(10);
 userTwo.smartphone.TopUp(5);
+userTwo.smartphone.Credit();
 (_a = userTwo.smartphone) === null || _a === void 0 ? void 0 : _a.Call(9);
 (_b = userTwo.smartphone) === null || _b === void 0 ? void 0 : _b.Call(12);
-(_c = userTwo.smartphone) === null || _c === void 0 ? void 0 : _c.Call(25);
+(_c = userTwo.smartphone) === null || _c === void 0 ? void 0 : _c.Call(20);
+(_d = userTwo.smartphone) === null || _d === void 0 ? void 0 : _d.Call(30);
+(_e = userTwo.smartphone) === null || _e === void 0 ? void 0 : _e.Call(5);
+userTwo.smartphone.Credit();
 userTwo.smartphone.NumberCalls();
 userTwo.smartphone.CallsReset();
 userTwo.smartphone.NumberCalls();

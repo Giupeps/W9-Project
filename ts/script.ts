@@ -16,9 +16,7 @@ abstract class Smartphone implements iSmartphone {
 
   TopUp(param: number): void {
     this.credit = this.credit + param;
-    console.log(
-      `hai ricaricato ${param} Euro il tuo credito aggiornato è di ${this.credit} Euro`
-    );
+    console.log(`hai ricaricato ${param} Euro`);
   }
   Call(minutesCall: number): void {
     let callPrice = Math.round(minutesCall * this.plan);
@@ -40,7 +38,7 @@ abstract class Smartphone implements iSmartphone {
   }
   CallsReset(): void {
     this.phoneCalls = 0;
-    console.log(`Il numero delle chiamate è ora 0`);
+    console.log(`Hai resettato il contatore delle chiamate`);
   }
 }
 
@@ -66,12 +64,15 @@ console.log(userOne);
 let samsungS20 = new Samsung();
 let userTwo = new User("Gigi", "Progetti", samsungS20);
 console.log(userTwo);
-userTwo.smartphone.TopUp(2);
+userTwo.smartphone.TopUp(10);
 userTwo.smartphone.TopUp(5);
-
+userTwo.smartphone.Credit();
 userTwo.smartphone?.Call(9);
 userTwo.smartphone?.Call(12);
-userTwo.smartphone?.Call(25);
+userTwo.smartphone?.Call(20);
+userTwo.smartphone?.Call(30);
+userTwo.smartphone?.Call(5);
+userTwo.smartphone.Credit();
 userTwo.smartphone.NumberCalls();
 userTwo.smartphone.CallsReset();
 userTwo.smartphone.NumberCalls();
